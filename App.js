@@ -16,7 +16,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.prompt1}>Hi Tan,</Text>
-        <Text>How are you feeling today?</Text>
+        <Text style={styles.prompt2}>How are you feeling today?</Text>
         <View style={styles.emoContainer}>
           <Image source={require('./images/assets/icons8-crying.png')}
             style={styles.emoji}
