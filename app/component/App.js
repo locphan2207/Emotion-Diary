@@ -14,7 +14,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <LinearGradient colors={['#C0FDFB', '#FCFFFD']} style={styles.container}>
+      <LinearGradient
+        colors={['#C0FDFB', '#C0FDFB', '#C0FDFB', '#FCFFFD']}
+        style={styles.container}>
         <Text style={styles.prompt1}>Hi Tan,</Text>
         <Text style={styles.prompt2}>How are you feeling today?</Text>
         <View style={styles.emoContainer}>
