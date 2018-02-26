@@ -48,6 +48,16 @@ const styles = StyleSheet.create({
     padding: 15,
     borderColor: '#64B6AC',
     borderWidth: 1
+  },
+
+  button: {
+    padding: 10,
+    backgroundColor: '#FCFFFD',
+    position: 'absolute',
+    top: 570,
+    borderRadius: 4,
+    borderColor: '#5D737E',
+    borderWidth: 1
   }
 });
 

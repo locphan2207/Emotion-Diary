@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View,
+import { Text, View, Button,
+  TouchableOpacity,
   Switch,
   Image,
   TextInput
@@ -43,6 +44,10 @@ export default class App extends React.Component {
           placeholder="Tell us about your day..."
           placeholderTextColor="#5D737E"
         />
+        <TouchableOpacity
+          style={styles.button}>
+          <Text style={{color: '#5D737E'}}>Save to Diary</Text>
+        </TouchableOpacity>
       </LinearGradient>
     );
   }
