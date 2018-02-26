@@ -1,0 +1,1 @@
+cmd-d to open developer menu

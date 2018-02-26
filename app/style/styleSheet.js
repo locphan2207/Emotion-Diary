@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   prompt2: {
     position: 'absolute',
-    top: 300,
+    top: 250,
     left: '20%',
     fontFamily: 'AppleSDGothicNeo-Light',
     fontSize: 20
