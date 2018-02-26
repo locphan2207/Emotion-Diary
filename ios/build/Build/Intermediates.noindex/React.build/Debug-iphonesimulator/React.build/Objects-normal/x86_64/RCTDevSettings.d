@@ -1,0 +1,22 @@
+dependencies: \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Modules/RCTDevSettings.mm \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Modules/RCTDevSettings.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Modules/RCTJSCSamplingProfiler.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/DevSupport/RCTPackagerClient.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/DevSupport/RCTPackagerConnection.h \
+  /Users/kimvibui/Documents/Loc/EmotionDiary/node_modules/react-native/React/DevSupport/RCTInspectorDevServerHelper.h
