@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 50,
-    width: 300,
+    width: '80%',
     position: 'absolute',
     top: 350,
   },
@@ -32,10 +32,22 @@ const styles = StyleSheet.create({
   },
   prompt2: {
     position: 'absolute',
-    top: 250,
-    left: '20%',
+    top: 280,
+    left: '18%',
     fontFamily: 'AppleSDGothicNeo-Light',
-    fontSize: 20
+    fontSize: 22
+  },
+  statusInput: {
+    width: '80%',
+    height: 100,
+    backgroundColor: '#DAFFEF',
+    position: 'absolute',
+    top: 450,
+    borderRadius: 14,
+    color: '#5D737E',
+    padding: 15,
+    borderColor: '#64B6AC',
+    borderWidth: 1
   }
 });
 
