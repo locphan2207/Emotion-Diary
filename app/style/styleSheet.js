@@ -37,26 +37,35 @@ const styles = StyleSheet.create({
     fontFamily: 'AppleSDGothicNeo-Light',
     fontSize: 22
   },
-  statusInput: {
+
+  statusContainer: {
     width: '80%',
+    flex: 1,
+    alignItems: 'center',
+    position: 'absolute',
+    top: 450
+  },
+
+  statusInput: {
+    width: '100%',
     height: 100,
     backgroundColor: '#DAFFEF',
-    position: 'absolute',
-    top: 450,
     borderRadius: 14,
     color: '#5D737E',
-    padding: 15,
     borderColor: '#64B6AC',
-    borderWidth: 1
+    borderWidth: 1,
+    padding: 15
   },
 
   button: {
+    flex: 1,
+    alignItems: 'center',
     padding: 10,
+    width: 120,
     backgroundColor: '#FCFFFD',
-    position: 'absolute',
-    top: 570,
     borderRadius: 4,
     borderColor: '#5D737E',
+    marginTop: 10,
     borderWidth: 1
   }
 });
