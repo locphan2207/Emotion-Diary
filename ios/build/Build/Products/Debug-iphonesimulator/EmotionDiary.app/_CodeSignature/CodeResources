@@ -6,7 +6,7 @@
 	<dict>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<data>
-		cgKkjosNRoH4n8OksNDQSw1sF94=
+		jfKnu+/Eg2itkZF7trQaiaBWzeg=
 		</data>
 		<key>Frameworks/IDEBundleInjection.framework/IDEBundleInjection</key>
 		<data>
@@ -63,11 +63,11 @@
 		</data>
 		<key>PlugIns/EmotionDiaryTests.xctest.dSYM/Contents/Resources/DWARF/EmotionDiaryTests</key>
 		<data>
-		WKSTYmk1D1FKI4985GuzOyxQ+9s=
+		o2TwvWNCdCH9+KnS3LTcxN7mgtM=
 		</data>
 		<key>PlugIns/EmotionDiaryTests.xctest/EmotionDiaryTests</key>
 		<data>
-		KBHiosloIVKf6iMuNpY78pfZBJw=
+		9ec7G4Hwokl1luh8UatwhnTIjuI=
 		</data>
 		<key>PlugIns/EmotionDiaryTests.xctest/Info.plist</key>
 		<data>
@@ -84,11 +84,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			cgKkjosNRoH4n8OksNDQSw1sF94=
+			jfKnu+/Eg2itkZF7trQaiaBWzeg=
 			</data>
 			<key>hash2</key>
 			<data>
-			FJp0pqT9AxXcP2Vlgnz+c23L2ftUl8cJ43ue8hh4udw=
+			gW4OkAbuufwFCoJCeEdiefHvWPL8ukbCSPNCcW2Nh4A=
 			</data>
 		</dict>
 		<key>Frameworks/IDEBundleInjection.framework/IDEBundleInjection</key>
@@ -207,22 +207,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			WKSTYmk1D1FKI4985GuzOyxQ+9s=
+			o2TwvWNCdCH9+KnS3LTcxN7mgtM=
 			</data>
 			<key>hash2</key>
 			<data>
-			wpI+LRHUxE954imkfIIFngUM6mCOqEjIREecmh4Nmfg=
+			OF1TxBspDBPM+5chXG9btfUmZpBvpadGdAtllatRLvA=
 			</data>
 		</dict>
 		<key>PlugIns/EmotionDiaryTests.xctest/EmotionDiaryTests</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			KBHiosloIVKf6iMuNpY78pfZBJw=
+			9ec7G4Hwokl1luh8UatwhnTIjuI=
 			</data>
 			<key>hash2</key>
 			<data>
-			oUc418WenM468FnWUDXVT6J9cQrkkwBUMhS0Rx6G7nE=
+			C7PFCInLDEhih/FQI0O+3HroK0e+Bk283qGt3bCbv8M=
 			</data>
 		</dict>
 		<key>PlugIns/EmotionDiaryTests.xctest/Info.plist</key>
