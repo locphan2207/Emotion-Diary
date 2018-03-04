@@ -14,6 +14,11 @@ export default class App extends React.Component {
     this.state = {text: "", status: false};
   }
 
+  handleEmoPress(e) {
+    e.target.styles={width: 60, height: 60};
+    this.setState({status: true});
+  }
+
   renderStatus() {
     console.log("check");
     if (this.state.status) {
@@ -44,7 +49,7 @@ export default class App extends React.Component {
         <Text style={styles.prompt1}>Hi Tan,</Text>
         <Text style={styles.prompt2}>How are you feeling today?</Text>
         <View style={styles.emoContainer}>
-          <TouchableOpacity onPress={() => this.setState({status: true})}>
+          <TouchableOpacity onPress={(e) => this.handleEmoPress(e)}>
             <Image source={require('../../images/assets/icons8-crying.png')}
               style={styles.emoji} />
           </TouchableOpacity>

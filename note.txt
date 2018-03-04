@@ -1,1 +1,6 @@
 cmd-d to open developer menu
+
+--------firebase --------
+npm install -g firebase-tools
+firebase login
+firebase init functions (->default->jvscript->npminstall)
