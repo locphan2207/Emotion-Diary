@@ -67,6 +67,16 @@ const styles = StyleSheet.create({
     borderColor: '#5D737E',
     marginTop: 10,
     borderWidth: 1
+  },
+
+  emailInput: {
+    fontSize: 15,
+    padding: 5,
+    borderColor: '#5D737E',
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderBottomWidth: 2,
   }
 });
 

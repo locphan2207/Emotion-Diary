@@ -45,8 +45,9 @@ export default class HomeScreen extends React.Component {
         colors={['#C0FDFB', '#FCFFFD']}
         style={styles.container}>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerOpen')}>
-        <Text>Drawer</Text>
+          <Text>Drawer</Text>
         </TouchableOpacity>
+
         <Text style={styles.prompt1}>Hi Tan,</Text>
         <Text style={styles.prompt2}>How are you feeling today?</Text>
         <View style={styles.emoContainer}>

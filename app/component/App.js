@@ -6,11 +6,13 @@ import {
 } from 'react-navigation';
 
 import LogInScreen from './LogInScreen';
+import SignUpScreen from './SignUpScreen';
 import HomeScreen from './HomeScreen';
 import UserScreen from './UserScreen';
 
 const AuthNavigator = StackNavigator({
-  SignIn: LogInScreen
+  SignIn: LogInScreen,
+  SignUp: SignUpScreen
 });
 
 const AppNavigator = DrawerNavigator({
@@ -24,7 +26,7 @@ const RootNavigator = SwitchNavigator(
     App: AppNavigator
   },
   {
-    initialRouteName: 'App'
+    initialRouteName: 'Auth'
   }
 );
 
