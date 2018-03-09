@@ -1,17 +1,37 @@
 import React from 'react';
-import HomeScreen from './HomeScreen';
-import {StackNavigator} from 'react-navigation';
+import {
+  StackNavigator,
+  SwitchNavigator,
+  DrawerNavigator
+} from 'react-navigation';
 
-const Navigator = StackNavigator({
-  Home: {
-    screen: HomeScreen
-  }
+import LogInScreen from './LogInScreen';
+import HomeScreen from './HomeScreen';
+import UserScreen from './UserScreen';
+
+const AuthNavigator = StackNavigator({
+  SignIn: LogInScreen
 });
+
+const AppNavigator = DrawerNavigator({
+  Home: HomeScreen,
+  User: UserScreen
+});
+
+const RootNavigator = SwitchNavigator(
+  {
+    Auth: AuthNavigator,
+    App: AppNavigator
+  },
+  {
+    initialRouteName: 'App'
+  }
+);
 
 export default class App extends React.Component {
   render() {
     return (
-      <Navigator />
+      <RootNavigator />
     );
   }
 }
