@@ -4,6 +4,13 @@ cmd-d to open developer menu
 npm install -g firebase-tools
 firebase login
 firebase init functions (->default->jvscript->npminstall)
+
 --------------firebase------------(right)
 Just need to install firebase through npm install firebase and npm link
 or react-native install firebase (it install packages and link for you)
+
+----------simulator-------------
+react-native run-ios --simulator="iPhone X"
+
+-------password----
+use secureTextEntry={true}
