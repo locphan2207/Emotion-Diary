@@ -11,3 +11,6 @@ or react-native install firebase (it install packages and link for you)
 
 ----------simulator-------------
 react-native run-ios --simulator="iPhone X"
+
+-------password----
+use secureTextEntry={true}

@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    flex: 1,
     alignItems: 'center',
     padding: 10,
     width: 120,
@@ -69,14 +68,30 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
 
-  emailInput: {
+  authInput: {
+    width: '60%',
     fontSize: 15,
-    padding: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
     borderColor: '#5D737E',
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
+  },
+
+  switchButton: {
+    fontWeight: '600',
+    fontSize: 16,
+    color: '#b63c42'
+  },
+
+  error: {
+    fontSize: 13,
+    color: '#b63c42',
+    paddingBottom: 7
   }
 });
 
