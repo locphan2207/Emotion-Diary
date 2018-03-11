@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View,
+  View, Text,
   ActivityIndicator,
   StatusBar
 } from 'react-native';
@@ -24,6 +24,7 @@ export default class AuthLoadingScreen extends React.Component {
     // this._bootstrapWait();
     return (
       <View style={styles.container}>
+        <Text>Loading current user...</Text>
         <ActivityIndicator size="large" color="#5D737E"/>
         <StatusBar barStyle='default' />
       </View>
