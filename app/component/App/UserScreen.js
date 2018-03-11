@@ -24,7 +24,7 @@ export default class UserScreen extends React.Component {
     const uid = firebase.auth().currentUser.uid;
     firebase.database().ref(`emotions/${uid}`).once('value').then(snapshot => {
       this.setState({
-        emotions: snapshot.val()
+        emotions: Object.values(snapshot.val())
       });
     });
   }
@@ -37,6 +37,7 @@ export default class UserScreen extends React.Component {
 
   render() {
     console.log(this.state);
+    if (this.state.emotions.length < 1) return null;
     return (
       <LinearGradient
         colors={['#C0FDFB', '#c5eaf9', '#FCFFFD']}
@@ -46,7 +47,7 @@ export default class UserScreen extends React.Component {
           onPress={() => this.props.navigation.navigate('DrawerOpen')}>
           <Text>Drawer</Text>
         </TouchableOpacity>
-        <LineGraph />
+        <LineGraph data={this.state.emotions}/>
         <TouchableOpacity
           style={styles.logOut}
           onPress={() => this.signOut()}>
