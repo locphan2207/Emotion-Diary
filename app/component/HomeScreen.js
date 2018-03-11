@@ -65,6 +65,8 @@ export default class HomeScreen extends React.Component {
         emotion: this.state.emotion,
         text: this.state.text
       });
+
+    this.props.navigation.navigate('User');
   }
 
   componentDidMount() {
