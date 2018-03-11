@@ -96,6 +96,10 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#b63c42',
     paddingBottom: 7
+  },
+
+  logOut: {
+    alignItems: 'center'
   }
 });
 

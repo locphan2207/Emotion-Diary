@@ -1,12 +1,13 @@
 import React from 'react';
 import {View, Text,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from 'react-native';
 // import graphUtil from '../../graphUtil/graphUtil';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from '../../style/styleSheet';
 import firebase from '../../../firebase/firebase';
-import LineGraph from './LineGraph';
+import Graph from './Graph';
 
 export default class UserScreen extends React.Component {
   constructor() {
@@ -37,22 +38,26 @@ export default class UserScreen extends React.Component {
 
   render() {
     console.log(this.state);
-    if (this.state.emotions.length < 1) return null;
+    if (this.state.emotions.length < 1) return (<Text>Loading...</Text>);
     return (
       <LinearGradient
         colors={['#C0FDFB', '#c5eaf9', '#FCFFFD']}
         style={styles.container}>
-        <TouchableOpacity
-          style={styles.menu}
-          onPress={() => this.props.navigation.navigate('DrawerOpen')}>
-          <Text>Drawer</Text>
-        </TouchableOpacity>
-        <LineGraph data={this.state.emotions}/>
-        <TouchableOpacity
-          style={styles.logOut}
-          onPress={() => this.signOut()}>
-          <Text style={{color: 'red'}}>Log Out</Text>
-        </TouchableOpacity>
+        <ScrollView>
+          <TouchableOpacity
+            style={styles.menu}
+            onPress={() => this.props.navigation.navigate('DrawerOpen')}>
+            <Text>Drawer</Text>
+          </TouchableOpacity>
+          <Graph
+            data={this.state.emotions}
+          />
+          <TouchableOpacity
+            style={styles.logOut}
+            onPress={() => this.signOut()}>
+            <Text style={{color: 'red'}}>Log Out</Text>
+          </TouchableOpacity>
+        </ScrollView>
       </LinearGradient>
     );
   }
