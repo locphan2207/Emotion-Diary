@@ -89,8 +89,7 @@ const styles = StyleSheet.create({
   },
 
   errorView :{
-    position: 'absolute',
-    bottom: 500
+    marginBottom: 20,
   },
 
   error: {
