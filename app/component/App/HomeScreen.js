@@ -74,6 +74,7 @@ export default class HomeScreen extends React.Component {
 
     firebase.database().ref(`/emotions/${this.state.uid}/${time}`)
       .set({
+        time,
         emotion: this.state.emotion,
         text: this.state.text
       });
