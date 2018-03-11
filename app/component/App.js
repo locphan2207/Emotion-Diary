@@ -7,11 +7,11 @@ import {
 
 import firebase from '../../firebase/firebase';
 
-import LogInScreen from './LogInScreen';
-import SignUpScreen from './SignUpScreen';
-import HomeScreen from './HomeScreen';
-import UserScreen from './UserScreen';
-import AuthLoadingScreen from './AuthLoadingScreen';
+import LogInScreen from './Auth/LogInScreen';
+import SignUpScreen from './Auth/SignUpScreen';
+import AuthLoadingScreen from './Auth/AuthLoadingScreen';
+import HomeScreen from './App/HomeScreen';
+import UserScreen from './App/UserScreen';
 
 const AuthNavigator = StackNavigator({
   SignIn: LogInScreen,
