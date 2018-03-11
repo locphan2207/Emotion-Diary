@@ -11,7 +11,17 @@ import firebase from '../../firebase/firebase';
 export default class SignUpScreen extends React.Component {
   constructor() {
     super();
-    this.state = {email: "", password: "", err: []};
+    this.state = {email: "", password: "", err: [],
+      firstname: "",
+      lastname: ""
+    };
+  }
+
+  static navigationOptions() {
+    return {
+      title: "Sign Up",
+      headerTransparent: true
+    };
   }
 
   validate() {
@@ -26,8 +36,17 @@ export default class SignUpScreen extends React.Component {
     //Firebase:
     const {email, password} = this.state;
     firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        const uid = firebase.auth().currentUser.uid;
+        firebase.database().ref(`users/${uid}`).set({
+          firstName: this.state.firstname,
+          lastName: this.state.lastname
+        });
+        this.props.navigation.navigate('Home');
+      })
       .catch((error) => {
         err.push(error.message);
+        this.setState({err});
       });
   }
 
@@ -35,17 +54,12 @@ export default class SignUpScreen extends React.Component {
     if (this.state.err.length > 0) {
       const err = this.state.err;
       return (
-        <View>
+        <View style={styles.errorView}>
           {this.state.err.map(error => (<Text style={styles.error}>{error}</Text>))}
         </View>
       );
     }
   }
-
-  static navigationOptions = {
-    title: "Sign Up",
-    headerTransparent: false
-  };
 
   render() {
     return (
@@ -60,6 +74,20 @@ export default class SignUpScreen extends React.Component {
           onChangeText={(email) => this.setState({email})}
           value={this.state.email}
           placeholder="Email"
+          placeholderTextColor="#5D737E"
+        />
+        <TextInput
+          style={styles.authInput}
+          onChangeText={(firstname) => this.setState({firstname})}
+          value={this.state.firstname}
+          placeholder="First name"
+          placeholderTextColor="#5D737E"
+        />
+        <TextInput
+          style={styles.authInput}
+          onChangeText={(lastname) => this.setState({lastname})}
+          value={this.state.lastname}
+          placeholder="Last name"
           placeholderTextColor="#5D737E"
         />
         <TextInput

@@ -13,9 +13,11 @@ export default class LogInScreen extends React.Component {
     this.state = {email: "", password: "", err: []};
   }
 
-  static navigationOptions = {
-    title: "Log In",
-    headerTransparent: true
+  static navigationOptions() {
+    return {
+      title: "Log In",
+      headerTransparent: true
+    };
   }
 
   validate() {
@@ -24,13 +26,25 @@ export default class LogInScreen extends React.Component {
     if (this.state.email === "") err.push("Email cannot be blank");
     if (this.state.password === "") err.push("Password cannot be blank");
     if (err.length > 1) this.setState({err});
+
+    //Firebase:
+    const {email, password} = this.state;
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        // const id = firebase.auth().currentUser.uid;
+        this.props.navigation.navigate('Home');
+      })
+      .catch(error => {
+        err.push(error.message);
+        this.setState({err});
+      });
   }
 
   renderErrors() {
     if (this.state.err.length > 0) {
       const err = this.state.err;
       return (
-        <View>
+        <View style={styles.errorView}>
           {this.state.err.map(error => (<Text style={styles.error}>{error}</Text>))}
         </View>
       );
