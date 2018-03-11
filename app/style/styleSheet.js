@@ -88,6 +88,11 @@ const styles = StyleSheet.create({
     color: '#b63c42'
   },
 
+  errorView :{
+    position: 'absolute',
+    bottom: 500
+  },
+
   error: {
     fontSize: 13,
     color: '#b63c42',
