@@ -10,7 +10,7 @@ import {VictoryChart,
 import moment from 'moment';
 import styles from '../../style/styleSheet';
 
-export default class Graph extends React.Component {
+export default class PieGraph extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -24,8 +24,7 @@ export default class Graph extends React.Component {
         {x: 'Joyjul', y: 1},
         {x: 'Delighted', y: 1},
         {x: 'Loved', y: 1},
-      ],
-      chartType: 'line'
+      ]
     };
   }
   componentWillReceiveProps(nextProps) {
@@ -64,14 +63,20 @@ export default class Graph extends React.Component {
   }
 
   renderLine() {
-    const data = this.props.data.map(d => {
-      console.log(moment.unix(d.time).dates());
-    });
+    const data = this.props.data;
+    let min = 0;
+    let max = 0;
+    if (data.length > 0) {
+      min = Math.floor(data[0].time/100000);
+      max = Math.ceil(data[data.length-1].time/100000);
+    }
+    console.log(min, max);
+    // Problem: x too big, have to make it like date
     return (
       <VictoryLine
+        range={{x: [min, max]}}
         x={d => d.time%10} y='emotion'
-        labels={d => d.time/100000}
-        sortKey='x'
+        labels={d => Math.floor(d.time/100000)}
         data={this.props.data}
       />
     );
@@ -95,28 +100,12 @@ export default class Graph extends React.Component {
     );
   }
 
-  renderChart() {
-    if (this.state.chartType === 'pie') {
-      return this.renderPie();
-    } else {
-      return this.renderLine();
-    }
-  }
-
   render() {
     console.log(this.state.filteredData);
     // if (!this.props.countData) return null;
     return (
       <View style={styles.graphContainer}>
-        {this.renderChart()}
-        <TouchableOpacity
-          onPress={() => this.setState({chartType: 'pie'})}>
-          <Text>Pie Chart</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => this.setState({chartType: 'line'})}>
-          <Text>Line Chart</Text>
-        </TouchableOpacity>
+        {this.renderPie()}
       </View>
     );
   }

@@ -7,13 +7,15 @@ import {View, Text,
 import LinearGradient from 'react-native-linear-gradient';
 import styles from '../../style/styleSheet';
 import firebase from '../../../firebase/firebase';
-import Graph from './Graph';
+import PieGraph from './PieGraph';
+import LineGraph from './LineGraph';
 
 export default class UserScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      emotions: []
+      emotions: [],
+      chartType: 'pie'
     };
   }
 
@@ -28,6 +30,22 @@ export default class UserScreen extends React.Component {
         emotions: Object.values(snapshot.val())
       });
     });
+  }
+
+  renderChart() {
+    if (this.state.chartType === 'pie') {
+      return (
+        <PieGraph
+          data={this.state.emotions}
+        />
+    );
+    } else {
+      return (
+        <LineGraph
+          data={this.state.emotions}
+        />
+      );
+    }
   }
 
   signOut() {
@@ -46,9 +64,18 @@ export default class UserScreen extends React.Component {
             onPress={() => this.props.navigation.navigate('DrawerOpen')}>
             <Text>Drawer</Text>
           </TouchableOpacity>
-          <Graph
-            data={this.state.emotions}
-          />
+
+          {this.renderChart()}
+
+          <TouchableOpacity
+            onPress={() => this.setState({chartType: 'pie'})}>
+            <Text>Pie Chart</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.setState({chartType: 'line'})}>
+            <Text>Line Chart</Text>
+          </TouchableOpacity>
+
           <TouchableOpacity
             style={styles.logOut}
             onPress={() => this.signOut()}>
