@@ -13,7 +13,7 @@ export default class UserScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      emotions: null
+      emotions: []
     };
   }
 
@@ -37,8 +37,6 @@ export default class UserScreen extends React.Component {
   }
 
   render() {
-    console.log(this.state);
-    if (!this.state.emotions) return (<Text>Loading...</Text>);
     return (
       <LinearGradient
         colors={['#C0FDFB', '#c5eaf9', '#FCFFFD']}

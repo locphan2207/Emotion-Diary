@@ -4,33 +4,35 @@ import {View, Text,
 } from 'react-native';
 import {VictoryChart,
   VictoryPie,
-  VictoryLine
+  VictoryLine,
+  VictoryTooltip
 } from 'victory-native';
-
+import moment from 'moment';
 import styles from '../../style/styleSheet';
 
 export default class Graph extends React.Component {
   constructor() {
     super();
     this.state = {
-      filteredColor: [],
+      filteredColor: ['#899D78', '#A1B0AB', '#55B295', '#DB7F67', '#ED9B40',
+        '#D34F73', '#BA3B46'],
       filteredData: [ //initial state of pie chart
-        {x: 0, y: 1},
-        {x: 0, y: 1},
-        {x: 0, y: 1},
-        {x: 0, y: 1},
-        {x: 0, y: 1},
-        {x: 0, y: 1},
-        {x: 0, y: 1},
+        {x: 'Depressed', y: 1},
+        {x: 'Sad', y: 1},
+        {x: 'Meh', y: 1},
+        {x: 'Happy', y: 1},
+        {x: 'Joyjul', y: 1},
+        {x: 'Delighted', y: 1},
+        {x: 'Loved', y: 1},
       ],
-      chartType: 'pie'
+      chartType: 'line'
     };
   }
-  componentDidMount() {
-    this.filterData();
+  componentWillReceiveProps(nextProps) {
+    this.filterData(nextProps);
   }
 
-  countData() {
+  countData(props) {
     const emoText = ['Depressed', 'Sad', 'Meh', 'Happy', 'Joyful', 'Delighted', 'Loved'];
     const colorScale=['#899D78', '#A1B0AB', '#55B295', '#DB7F67', '#ED9B40',
       '#D34F73', '#BA3B46'];
@@ -40,19 +42,18 @@ export default class Graph extends React.Component {
       emoCount[i] = {x: emoText[i], y: 0, color: colorScale[i]};
     }
     //Count:
-    this.props.data.forEach(emo => {
+    props.data.forEach(emo => {
       emoCount[emo.emotion+2].y += 1; //+2 becuase we in database it range from -2 -> 5
     });
-    console.log(emoCount);
     return Object.values(emoCount);
   }
 
-  filterData() {  // filter color for only available emotions
+  filterData(nextProps) {  // filter color for only available emotions
     const filteredColor = [];
     const filteredData = [];
     console.log(this.props);
     // if (this.props.countData) {
-      this.countData().forEach(data => {
+      this.countData(nextProps).forEach(data => {
         if (data.y > 0) {
           filteredColor.push(data.color);
           filteredData.push(data);
@@ -63,16 +64,16 @@ export default class Graph extends React.Component {
   }
 
   renderLine() {
-    console.log(this.props.data);
+    const data = this.props.data.map(d => {
+      console.log(moment.unix(d.time).dates());
+    });
     return (
-      <VictoryChart>
-        <VictoryLine
-          x='time' y='emotion'
-          samples={50}
-          interpolation='natural'
-          data={this.props.data}
-        />
-      </VictoryChart>
+      <VictoryLine
+        x={d => d.time%10} y='emotion'
+        labels={d => d.time/100000}
+        sortKey='x'
+        data={this.props.data}
+      />
     );
   }
 
@@ -80,13 +81,14 @@ export default class Graph extends React.Component {
     return (
       <VictoryPie
         style={{labels: {
-          fontSize: 13,
+          fontSize: 15,
           fill: 'white'
         }}}
         labelRadius={90}
         padAngle={2}
         colorScale={this.state.filteredColor}
         innerRadius={60}
+        labels={(data) => (data.x)}
         data={this.state.filteredData}
         animate={{duration: 1500}}
       />
@@ -102,7 +104,7 @@ export default class Graph extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.state.filteredData);
     // if (!this.props.countData) return null;
     return (
       <View style={styles.graphContainer}>
