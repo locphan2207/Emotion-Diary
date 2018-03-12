@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -96,6 +95,11 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#b63c42',
     paddingBottom: 7
+  },
+
+  graphContainer: {
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
   logOut: {

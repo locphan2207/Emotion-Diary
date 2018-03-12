@@ -1,8 +1,10 @@
 import React from 'react';
-import {View, Text
+import {View, Text,
+  TouchableOpacity
 } from 'react-native';
-import {VictoryBar, VictoryChart, VictoryTheme,
-  VictoryPie
+import {VictoryChart,
+  VictoryPie,
+  VictoryLine
 } from 'victory-native';
 
 import styles from '../../style/styleSheet';
@@ -10,7 +12,19 @@ import styles from '../../style/styleSheet';
 export default class Graph extends React.Component {
   constructor() {
     super();
-    this.state = {filteredColor: [], filteredData: []};
+    this.state = {
+      filteredColor: [],
+      filteredData: [ //initial state of pie chart
+        {x: 0, y: 1},
+        {x: 0, y: 1},
+        {x: 0, y: 1},
+        {x: 0, y: 1},
+        {x: 0, y: 1},
+        {x: 0, y: 1},
+        {x: 0, y: 1},
+      ],
+      chartType: 'pie'
+    };
   }
   componentDidMount() {
     this.filterData();
@@ -48,22 +62,59 @@ export default class Graph extends React.Component {
     this.setState({filteredColor, filteredData});
   }
 
+  renderLine() {
+    console.log(this.props.data);
+    return (
+      <VictoryChart>
+        <VictoryLine
+          x='time' y='emotion'
+          samples={50}
+          interpolation='natural'
+          data={this.props.data}
+        />
+      </VictoryChart>
+    );
+  }
+
+  renderPie() {
+    return (
+      <VictoryPie
+        style={{labels: {
+          fontSize: 13,
+          fill: 'white'
+        }}}
+        labelRadius={90}
+        padAngle={2}
+        colorScale={this.state.filteredColor}
+        innerRadius={60}
+        data={this.state.filteredData}
+        animate={{duration: 1500}}
+      />
+    );
+  }
+
+  renderChart() {
+    if (this.state.chartType === 'pie') {
+      return this.renderPie();
+    } else {
+      return this.renderLine();
+    }
+  }
+
   render() {
     console.log(this.props);
     // if (!this.props.countData) return null;
     return (
-      <View>
-        <VictoryPie
-          style={{labels: {
-            fontSize: 13,
-            fill: 'white'
-          }}}
-          labelRadius={90}
-          padAngle={2}
-          colorScale={this.state.filteredColor}
-          innerRadius={60}
-          data={this.state.filteredData}
-        />
+      <View style={styles.graphContainer}>
+        {this.renderChart()}
+        <TouchableOpacity
+          onPress={() => this.setState({chartType: 'pie'})}>
+          <Text>Pie Chart</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.setState({chartType: 'line'})}>
+          <Text>Line Chart</Text>
+        </TouchableOpacity>
       </View>
     );
   }

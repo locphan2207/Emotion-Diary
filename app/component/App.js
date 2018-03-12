@@ -12,6 +12,7 @@ import SignUpScreen from './Auth/SignUpScreen';
 import AuthLoadingScreen from './Auth/AuthLoadingScreen';
 import HomeScreen from './App/HomeScreen';
 import UserScreen from './App/UserScreen';
+import VictoryScreen from './App/VictoryScreen';
 
 const AuthNavigator = StackNavigator({
   SignIn: LogInScreen,
@@ -20,6 +21,7 @@ const AuthNavigator = StackNavigator({
 
 const AppNavigator = DrawerNavigator({
   User: UserScreen,
+  Victory: VictoryScreen,
   Home: HomeScreen,
 });
 
