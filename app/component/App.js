@@ -19,8 +19,8 @@ const AuthNavigator = StackNavigator({
 });
 
 const AppNavigator = DrawerNavigator({
+  User: UserScreen,
   Home: HomeScreen,
-  User: UserScreen
 });
 
 

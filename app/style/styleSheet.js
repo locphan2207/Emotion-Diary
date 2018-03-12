@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
 
   logOut: {
     alignItems: 'center'
-  }
+  },
 });
 
 export default styles;

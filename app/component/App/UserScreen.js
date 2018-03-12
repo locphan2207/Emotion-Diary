@@ -43,7 +43,6 @@ export default class UserScreen extends React.Component {
       <LinearGradient
         colors={['#C0FDFB', '#c5eaf9', '#FCFFFD']}
         style={styles.container}>
-        <ScrollView>
           <TouchableOpacity
             style={styles.menu}
             onPress={() => this.props.navigation.navigate('DrawerOpen')}>
@@ -57,7 +56,6 @@ export default class UserScreen extends React.Component {
             onPress={() => this.signOut()}>
             <Text style={{color: 'red'}}>Log Out</Text>
           </TouchableOpacity>
-        </ScrollView>
       </LinearGradient>
     );
   }
