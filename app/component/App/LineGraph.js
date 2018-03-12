@@ -10,41 +10,49 @@ import {VictoryChart,
 import moment from 'moment';
 import styles from '../../style/styleSheet';
 
-export default class PieGraph extends React.Component {
+export default class LineGraph extends React.Component {
   constructor() {
     super();
     this.state = {
       filteredColor: ['#899D78', '#A1B0AB', '#55B295', '#DB7F67', '#ED9B40',
         '#D34F73', '#BA3B46'],
-      filteredData: [ //initial state of pie chart
-        {x: 'Depressed', y: 1},
-        {x: 'Sad', y: 1},
-        {x: 'Meh', y: 1},
-        {x: 'Happy', y: 1},
-        {x: 'Joyjul', y: 1},
-        {x: 'Delighted', y: 1},
-        {x: 'Loved', y: 1},
-      ]
+      filteredData: []
     };
   }
 
+  componentDidMount() {
+    this.filterData();
+  }
+
+  filterData() {
+    // Get current date, then calculate the range of data from 12AM to 11:59PM
+    const today = moment();
+    const start = moment([today.year(), today.month(), today.date()]).unix();  // 12AM
+    const end = moment([today.year(), today.month(), today.date(), 23, 59]).unix(); // 11:59PM
+    console.log(start, end);
+    const filteredData = [];
+    this.props.data.forEach(data => {
+      if (data.time >= start && data.time <= end) {
+        data.date = new Date(data.time);
+        filteredData.push(data);
+      }
+    });
+    this.setState({filteredData});
+  }
+
   renderLine() {
-    const data = this.props.data;
-    let min = 0;
-    let max = 0;
-    if (data.length > 0) {
-      min = Math.floor(data[0].time/100000);
-      max = Math.ceil(data[data.length-1].time/100000);
-    }
-    console.log(min, max);
+    const data = this.state.filteredData;
+    console.log(data);
     // Problem: x too big, have to make it like date
     return (
-      <VictoryLine
-        range={{x: [min, max]}}
-        x={d => d.time%10} y='emotion'
-        labels={d => Math.floor(d.time/100000)}
-        data={this.props.data}
-      />
+      <VictoryChart
+        scale={{x: 'time'}}>
+        <VictoryLine
+          x='time' y='emotion'
+          interpolation="linear"
+          data={this.state.filteredData}
+        />
+      </VictoryChart>
     );
   }
 
