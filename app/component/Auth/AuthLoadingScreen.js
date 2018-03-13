@@ -7,6 +7,9 @@ import {
 import styles from '../../style/styleSheet';
 import firebase from '../../../firebase/firebase';
 
+import * as admin from '../../../secret/adminCredential';
+import demoCredential from '../../../secret/demoCredential';
+
 export default class AuthLoadingScreen extends React.Component {
   constructor() {
     super();
@@ -15,8 +18,12 @@ export default class AuthLoadingScreen extends React.Component {
 
   _bootstrapWait() {
     firebase.auth().onAuthStateChanged(user => {
-      if (user) this.props.navigation.navigate('App');
-      else this.props.navigation.navigate('Auth');
+      if (user) {
+        if (user.uid === demoCredential.uid) {// if guest is logging in
+          admin.deleteAndReSeedDemoData();  // we re-seed data
+        }
+        this.props.navigation.navigate('App');
+      } else this.props.navigation.navigate('Auth');
     });
   }
 

@@ -1,12 +1,10 @@
 import React from 'react';
-import { Text, View, Button,
-  TouchableOpacity,
-  Switch,
-  Image,
-  TextInput
+import { Text, View, Button, TouchableOpacity, Switch, Image,
+  TextInput, KeyboardAvoidingView
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import moment from 'moment';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import styles from '../../style/styleSheet';
 import firebase from '../../../firebase/firebase';
@@ -83,19 +81,21 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log(firebase.auth().currentUser);
     const assetPath = '../../../images/assets';
     if (this.state.firstName === "") return null;
     return (
       <LinearGradient
         colors={['#C0FDFB', '#FCFFFD']}
         style={styles.container}>
+        <KeyboardAwareScrollView
 
-        <View style={styles.innerContainer}>
+          contentContainerStyle={styles.innerContainer}>
           <TouchableOpacity
             style={styles.menu}
             onPress={() => this.props.navigation.navigate('DrawerOpen')}>
-            <Text>Drawer</Text>
+            <Image source={require(`${assetPath}/icons8-menu-48.png`)}
+              style={styles.menuIcon} />
           </TouchableOpacity>
 
           <Text style={styles.prompt1}>Hi {this.state.firstName},</Text>
@@ -142,7 +142,7 @@ export default class HomeScreen extends React.Component {
 
           {this.renderStatus()}
 
-        </View>
+        </KeyboardAwareScrollView>
       </LinearGradient>
     );
   }

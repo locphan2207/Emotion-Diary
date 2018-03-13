@@ -22,18 +22,19 @@ export default class PieGraph extends React.Component {
         {x: 'Delighted', y: 1, color: '#ED9B40'},
         {x: 'Blissful', y: 1, color: '#D34F73'},
         {x: 'Loved', y: 1, color: '#BA3B46'},
-      ]
+      ],
+      filteredData2: [] // for bar chart
     };
   }
 
   componentDidMount() {
     if (this.props.data.length > 0) {
-      this.filterData(this.props);
+      this.filterAvailableData(this.props);
     }
   }
 
   componentWillReceiveProps(nextProps) { // incase no data loaded in did mount, we do here
-    this.filterData(nextProps);
+    this.filterAvailableData(nextProps);
   }
 
   countData(props) {
@@ -52,22 +53,22 @@ export default class PieGraph extends React.Component {
     return Object.values(emoCount);
   }
 
-  filterData(props) {  // filter color for only available emotions
+  filterAvailableData(props) {  // filter color for only available emotions
     const filteredColor = [];
     const filteredData = [];
     this.countData(props).forEach(data => {
-      if (data.y > 0) {
+      if (data.y > 0) { // if count > 0 then we take
         filteredColor.push(data.color);
         filteredData.push(data);
       }
     });
     // }
-    this.setState({filteredColor, filteredData});
+    this.setState({filteredColor, filteredData, filteredData2: filteredData});
   }
 
   renderPie() {
     return (
-      <View>
+      <View style={{alignItems: 'center'}}>
         <VictoryPie
           style={{labels: {
             fontSize: 15,
@@ -83,13 +84,13 @@ export default class PieGraph extends React.Component {
           animate={{duration: 1500}}
         />
         <VictoryChart
-          height={200}
-          animate={{duration: 1000}}
-          padding={{left: 75, right: 50, top: 20, bottom: 0}}
+          height={200} width={this.state.filteredData.length * 50}
+          animate={{duration: 500}}
+          padding={{left: 75, right: 75, top: 20, bottom: 0}}
         >
           <VictoryBar
             labels={(d) => `${d.y}`}
-            data={this.state.filteredData}
+            data={this.state.filteredData2}
             style={{
               data: {
                 fill: d => d.color,

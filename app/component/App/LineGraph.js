@@ -30,8 +30,8 @@ export default class LineGraph extends React.Component {
         containerComponent={
           <VictoryVoronoiContainer
           labels={(d) => {
-            if (d.text === '') return `${d.date.toLocaleString()}`;
-            else return `${d.date.toLocaleString()}\n"${d.text}"`;
+            if (d.text === '') return `${moment(d.time).format('ddd, MMM D, h:mm:ss a')}`;
+            else return `${moment(d.time).format('ddd, MMM D, h:mm:ss a')}\n"${d.text}"`;
           }}
           />
         }
@@ -41,26 +41,17 @@ export default class LineGraph extends React.Component {
           x='date' y='emotion'
           scale='time'
           data={this.props.data}
-          animate={{duration: 3000}}
+          animate={{duration: 2000}}
         />
-        <VictoryChart
-        >
-          <VictoryScatter
-            style={{data: {stroke: '#55B295'}}}
-            x='date' y='emotion'
-            scale='time'
-            data={this.props.data}
-            animate={{duration: 3000}}
+
+        <VictoryAxis style={{ axis: {strokeWidth: 1} }}
+          tickFormat={() => ''}
           />
-          <VictoryAxis style={{ axis: {strokeWidth: 1} }}
-            tickFormat={() => ''}
+        <VictoryAxis
+          dependentAxis
+          tickValues={[-2, -1, 0, 1, 2, 3, 4]}
+          tickFormat={['Depressed', 'Sad', 'Meh', 'Happy', 'Delighted', 'Blissful', 'Loved']}
           />
-          <VictoryAxis
-            dependentAxis
-            tickValues={[-2, -1, 0, 1, 2, 3, 4]}
-            tickFormat={['Depressed', 'Sad', 'Meh', 'Happy', 'Delighted', 'Blissful', 'Loved']}
-          />
-        </VictoryChart>
       </VictoryChart>
     );
   }
@@ -74,3 +65,14 @@ export default class LineGraph extends React.Component {
     );
   }
 }
+// incase I want scatter again:
+// <VictoryChart
+// >
+//   <VictoryScatter
+//     style={{data: {stroke: '#55B295'}}}
+//     x='date' y='emotion'
+//     scale='time'
+//     data={this.props.data}
+//     animate={{duration: 2000}}
+//   />
+// </VictoryChart>
