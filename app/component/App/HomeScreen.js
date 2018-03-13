@@ -83,7 +83,6 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const assetPath = '../../../images/assets';
     if (this.state.firstName === "") return null;
     return (
@@ -95,7 +94,8 @@ export default class HomeScreen extends React.Component {
           <TouchableOpacity
             style={styles.menu}
             onPress={() => this.props.navigation.navigate('DrawerOpen')}>
-            <Text>Drawer</Text>
+            <Image source={require(`${assetPath}/icons8-menu-48.png`)}
+              style={styles.menuIcon} />
           </TouchableOpacity>
 
           <Text style={styles.prompt1}>Hi {this.state.firstName},</Text>

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     position: 'absolute',
-    top: 50,
+    top: 60,
     // backgroundColor: 'green'
   },
 
@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
 
+  menuIcon: {
+    width: 30,
+    height: 30
+  },
   authContainer: {
     width: '100%',
     height: '100%',
@@ -38,6 +42,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 350,
   },
+
   emoji: {
     width: 40,
     height: 40
@@ -60,10 +65,15 @@ const styles = StyleSheet.create({
 
   statusContainer: {
     width: '80%',
+    height: 200,
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
     position: 'absolute',
-    top: 450
+    top: 450,
+    // backgroundColor: 'green'
   },
 
   statusInput: {
@@ -85,7 +95,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderColor: '#5D737E',
     marginTop: 15,
-    borderWidth: 1
+    marginBottom: 20,
+    borderWidth: 1.1
   },
 
   authInput: {

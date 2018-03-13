@@ -28,7 +28,7 @@ export default class PieGraph extends React.Component {
 
   componentDidMount() {
     if (this.props.data.length > 0) {
-      this.filterData(this.props);
+      this.filterAvailableData(this.props);
     }
   }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text,
   TouchableOpacity,
-  ScrollView
+  ScrollView, Image
 } from 'react-native';
 // import graphUtil from '../../graphUtil/graphUtil';
 import LinearGradient from 'react-native-linear-gradient';
@@ -96,6 +96,7 @@ export default class UserScreen extends React.Component {
   }
 
   render() {
+    const assetPath = '../../../images/assets';
     return (
       <LinearGradient style={styles.container} colors={['#C0FDFB', '#c5eaf9', '#FCFFFD']}>
         <View style={styles.innerContainer}>
@@ -103,7 +104,8 @@ export default class UserScreen extends React.Component {
           <TouchableOpacity
             style={styles.menu}
             onPress={() => this.props.navigation.navigate('DrawerOpen')}>
-            <Text>Drawer</Text>
+            <Image source={require(`${assetPath}/icons8-menu-48.png`)}
+              style={styles.menuIcon} />
           </TouchableOpacity>
 
           <View style={styles.chartOption}>
