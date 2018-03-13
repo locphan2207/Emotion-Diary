@@ -99,7 +99,7 @@ export default class HomeScreen extends React.Component {
           </TouchableOpacity>
 
           <Text style={styles.prompt1}>Hi {this.state.firstName},</Text>
-          <Text style={styles.prompt2}>How are you feeling today?</Text>
+          <Text style={styles.prompt2}>How are you feeling now?</Text>
 
           <View style={styles.emoContainer}>
             <TouchableOpacity
