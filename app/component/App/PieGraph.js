@@ -84,7 +84,7 @@ export default class PieGraph extends React.Component {
         />
         <VictoryChart
           height={200}
-          animate={{duration: 500}}
+          animate={{duration: 1000}}
           padding={{left: 75, right: 50, top: 20, bottom: 0}}
         >
           <VictoryBar

@@ -2,7 +2,28 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
+  },
+
+  innerContainer: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    position: 'absolute',
+    top: 50,
+    // backgroundColor: 'green'
+  },
+
+  menu: {
+    height: 50,
+    width: '85%',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
+
+  authContainer: {
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -104,8 +125,29 @@ const styles = StyleSheet.create({
   },
 
   logOut: {
-    alignItems: 'center'
+    height: 100,
+    justifyContent: 'center'
   },
+
+  chartContainer: {
+    width: '100%',
+    height: 500,
+  },
+
+  chartFilter: {
+    height: 70,
+    width: '65%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row'
+  },
+
+  chartOption: {
+    width: '40%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row'
+  }
 });
 
 export default styles;

@@ -56,35 +56,38 @@ export default class LogInScreen extends React.Component {
       <LinearGradient
         colors={['#C0FDFB', '#c5eaf9', '#FCFFFD']}
         style={styles.container}>
-        {this.renderErrors()}
-        <TextInput
-          style={styles.authInput}
-          onChangeText={(email) => this.setState({email})}
-          value={this.state.email}
-          placeholder="Email"
-          placeholderTextColor="#5D737E"
-        />
-        <TextInput
-          style={styles.authInput}
-          onChangeText={(password) => this.setState({password})}
-          value={this.state.password}
-          secureTextEntry={true}
-          placeholder="Password"
-          placeholderTextColor="#5D737E"
-        />
-        <TouchableOpacity
-          onPress={() => this.validate()}
-          style={styles.button}>
-          <Text>Log In</Text>
-        </TouchableOpacity>
-        <Text
-          style={{marginTop: 20, fontStyle: 'italic'}}>
-          Do not have an account?
-        </Text>
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("SignUp")}>
-          <Text style={styles.switchButton}>Sign up!</Text>
-        </TouchableOpacity>
+        
+        <View style={styles.authContainer}>
+          {this.renderErrors()}
+          <TextInput
+            style={styles.authInput}
+            onChangeText={(email) => this.setState({email})}
+            value={this.state.email}
+            placeholder="Email"
+            placeholderTextColor="#5D737E"
+          />
+          <TextInput
+            style={styles.authInput}
+            onChangeText={(password) => this.setState({password})}
+            value={this.state.password}
+            secureTextEntry={true}
+            placeholder="Password"
+            placeholderTextColor="#5D737E"
+          />
+          <TouchableOpacity
+            onPress={() => this.validate()}
+            style={styles.button}>
+            <Text>Log In</Text>
+          </TouchableOpacity>
+          <Text
+            style={{marginTop: 20, fontStyle: 'italic'}}>
+            Do not have an account?
+          </Text>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("SignUp")}>
+            <Text style={styles.switchButton}>Sign up!</Text>
+          </TouchableOpacity>
+        </View>
       </LinearGradient>
     );
   }

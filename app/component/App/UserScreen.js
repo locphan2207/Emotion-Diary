@@ -64,15 +64,19 @@ export default class UserScreen extends React.Component {
 
     if (this.state.chartType === 'pie') {
       return (
-        <PieGraph
-          data={this.filterData()}
-        />
+        <View style={styles.chartContainer}>
+          <PieGraph
+            data={this.filterData()}
+          />
+        </View>
     );
     } else {
       return (
-        <LineGraph
-          data={this.filterData()}
-        />
+        <View style={styles.chartContainer}>
+          <LineGraph
+            data={this.filterData()}
+          />
+        </View>
       );
     }
   }
@@ -85,41 +89,56 @@ export default class UserScreen extends React.Component {
 
   render() {
     return (
-      <LinearGradient
-        colors={['#C0FDFB', '#c5eaf9', '#FCFFFD']}
-        style={styles.container}>
+      <LinearGradient style={styles.container} colors={['#C0FDFB', '#c5eaf9', '#FCFFFD']}>
+        <View style={styles.innerContainer}>
+
           <TouchableOpacity
             style={styles.menu}
             onPress={() => this.props.navigation.navigate('DrawerOpen')}>
             <Text>Drawer</Text>
           </TouchableOpacity>
 
+          <View style={styles.chartOption}>
+            <TouchableOpacity
+              onPress={() => this.setState({chartType: 'pie'})}>
+              <Text style={{fontWeight: this.state.chartType === 'pie' ? '700' : '300'}}>
+                Pie Chart
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.setState({chartType: 'line'})}>
+              <Text style={{fontWeight: this.state.chartType === 'line' ? '700' : '300'}}>
+                Line Chart
+              </Text>
+            </TouchableOpacity>
+          </View>
+
           {this.renderChart()}
 
-          <TouchableOpacity onPress={() => this.setState({filterType: 'day'})}>
-            <Text>Last 24h</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.setState({filterType: 'week'})}>
-            <Text>This week</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.setState({filterType: 'month'})}>
-            <Text>This month</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => this.setState({chartType: 'pie'})}>
-            <Text>Pie Chart</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.setState({chartType: 'line'})}>
-            <Text>Line Chart</Text>
-          </TouchableOpacity>
+          <View style={styles.chartFilter}>
+            <TouchableOpacity onPress={() => this.setState({filterType: 'day'})}>
+              <Text style={{fontWeight: this.state.filterType === 'day' ? '700' : '100'}}>
+                Last 24h
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.setState({filterType: 'week'})}>
+              <Text style={{fontWeight: this.state.filterType === 'week' ? '700' : '100'}}>
+                This week
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.setState({filterType: 'month'})}>
+              <Text style={{fontWeight: this.state.filterType === 'month' ? '700' : '100'}}>
+                This month
+              </Text>
+            </TouchableOpacity>
+          </View>
 
           <TouchableOpacity
             style={styles.logOut}
             onPress={() => this.signOut()}>
             <Text style={{color: 'red'}}>Log Out</Text>
           </TouchableOpacity>
+        </View>
       </LinearGradient>
     );
   }
