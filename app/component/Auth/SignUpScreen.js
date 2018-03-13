@@ -67,51 +67,53 @@ export default class SignUpScreen extends React.Component {
         colors={['#C0FDFB', '#c5eaf9', '#FCFFFD']}
         style={styles.container}>
 
-        {this.renderErrors()}
+        <View style={styles.authContainer}>
+          {this.renderErrors()}
 
-        <TextInput
-          style={styles.authInput}
-          onChangeText={(email) => this.setState({email})}
-          value={this.state.email}
-          placeholder="Email"
-          placeholderTextColor="#5D737E"
-        />
-        <TextInput
-          style={styles.authInput}
-          onChangeText={(firstname) => this.setState({firstname})}
-          value={this.state.firstname}
-          placeholder="First name"
-          placeholderTextColor="#5D737E"
-        />
-        <TextInput
-          style={styles.authInput}
-          onChangeText={(lastname) => this.setState({lastname})}
-          value={this.state.lastname}
-          placeholder="Last name"
-          placeholderTextColor="#5D737E"
-        />
-        <TextInput
-          style={styles.authInput}
-          onChangeText={(password) => this.setState({password})}
-          value={this.state.password}
-          secureTextEntry={true}
-          placeholder="Password"
-          placeholderTextColor="#5D737E"
-        />
-        <TouchableOpacity
-          onPress={() => {this.validate()}}
-          style={styles.button}>
-          <Text>Sign Up</Text>
-        </TouchableOpacity>
+          <TextInput
+            style={styles.authInput}
+            onChangeText={(email) => this.setState({email})}
+            value={this.state.email}
+            placeholder="Email"
+            placeholderTextColor="#5D737E"
+          />
+          <TextInput
+            style={styles.authInput}
+            onChangeText={(firstname) => this.setState({firstname})}
+            value={this.state.firstname}
+            placeholder="First name"
+            placeholderTextColor="#5D737E"
+          />
+          <TextInput
+            style={styles.authInput}
+            onChangeText={(lastname) => this.setState({lastname})}
+            value={this.state.lastname}
+            placeholder="Last name"
+            placeholderTextColor="#5D737E"
+          />
+          <TextInput
+            style={styles.authInput}
+            onChangeText={(password) => this.setState({password})}
+            value={this.state.password}
+            secureTextEntry={true}
+            placeholder="Password"
+            placeholderTextColor="#5D737E"
+          />
+          <TouchableOpacity
+            onPress={() => this.validate()}
+            style={styles.button}>
+            <Text>Sign Up</Text>
+          </TouchableOpacity>
 
-        <Text
-          style={{marginTop: 20, fontStyle: 'italic'}}>
-          Already have your account?
-        </Text>
-        <TouchableOpacity
-          onPress={() => this.props.navigation.goBack()}>
-          <Text style={styles.switchButton}>Sign In</Text>
-        </TouchableOpacity>
+          <Text
+            style={{marginTop: 20, fontStyle: 'italic'}}>
+            Already have your account?
+          </Text>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.goBack()}>
+            <Text style={styles.switchButton}>Sign In</Text>
+          </TouchableOpacity>
+        </View>
       </LinearGradient>
     );
   }

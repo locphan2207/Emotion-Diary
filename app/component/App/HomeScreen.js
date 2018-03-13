@@ -90,51 +90,59 @@ export default class HomeScreen extends React.Component {
       <LinearGradient
         colors={['#C0FDFB', '#FCFFFD']}
         style={styles.container}>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerOpen')}>
-          <Text>Drawer</Text>
-        </TouchableOpacity>
 
-        <Text style={styles.prompt1}>Hi {this.state.firstName},</Text>
-        <Text style={styles.prompt2}>How are you feeling today?</Text>
-        <View style={styles.emoContainer}>
+        <View style={styles.innerContainer}>
           <TouchableOpacity
-            onPress={() => this.handleEmoPress("-2")}>
-            <Image source={require(`${assetPath}/icons8-crying.png`)}
-              ref="-2"
-              style={styles.emoji} />
+            style={styles.menu}
+            onPress={() => this.props.navigation.navigate('DrawerOpen')}>
+            <Text>Drawer</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.handleEmoPress("-1")}>
-            <Image source={require(`${assetPath}/icons8-sad.png`)}
-              ref="-1"
-              style={styles.emoji} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.handleEmoPress("0")}>
-            <Image source={require(`${assetPath}/icons8-neutral_emoticon.png`)}
-              ref="0"
-              style={styles.emoji} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.handleEmoPress("1")}>
-            <Image source={require(`${assetPath}/icons8-happy.png`)}
-              ref="1"
-              style={styles.emoji} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.handleEmoPress("2")}>
-            <Image source={require(`${assetPath}/icons8-lol.png`)}
-              ref="2"
-              style={styles.emoji} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.handleEmoPress("3")}>
-            <Image source={require(`${assetPath}/icons8-smiling_face_with_heart.png`)}
-              ref="3"
-              style={styles.emoji} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.handleEmoPress("4")}>
-            <Image source={require(`${assetPath}/icons8-in_love.png`)}
-              ref="4"
-              style={styles.emoji} />
-          </TouchableOpacity>
+
+          <Text style={styles.prompt1}>Hi {this.state.firstName},</Text>
+          <Text style={styles.prompt2}>How are you feeling today?</Text>
+
+          <View style={styles.emoContainer}>
+            <TouchableOpacity
+              onPress={() => this.handleEmoPress("-2")}>
+              <Image source={require(`${assetPath}/icons8-crying.png`)}
+                ref="-2"
+                style={styles.emoji} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.handleEmoPress("-1")}>
+              <Image source={require(`${assetPath}/icons8-sad.png`)}
+                ref="-1"
+                style={styles.emoji} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.handleEmoPress("0")}>
+              <Image source={require(`${assetPath}/icons8-neutral_emoticon.png`)}
+                ref="0"
+                style={styles.emoji} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.handleEmoPress("1")}>
+              <Image source={require(`${assetPath}/icons8-happy.png`)}
+                ref="1"
+                style={styles.emoji} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.handleEmoPress("2")}>
+              <Image source={require(`${assetPath}/icons8-lol.png`)}
+                ref="2"
+                style={styles.emoji} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.handleEmoPress("3")}>
+              <Image source={require(`${assetPath}/icons8-smiling_face_with_heart.png`)}
+                ref="3"
+                style={styles.emoji} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.handleEmoPress("4")}>
+              <Image source={require(`${assetPath}/icons8-in_love.png`)}
+                ref="4"
+                style={styles.emoji} />
+            </TouchableOpacity>
+          </View>
+
+          {this.renderStatus()}
+
         </View>
-        {this.renderStatus()}
       </LinearGradient>
     );
   }

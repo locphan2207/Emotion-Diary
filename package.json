@@ -17,6 +17,8 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "d3-scale": "^2.0.0",
+    "d3-shape": "^1.2.0",
     "firebase": "^4.10.1",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
