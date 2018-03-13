@@ -41,7 +41,7 @@ export default class LineGraph extends React.Component {
           x='date' y='emotion'
           scale='time'
           data={this.props.data}
-          animate={{duration: 3000}}
+          animate={{duration: 2000}}
         />
         <VictoryChart
         >
@@ -50,7 +50,7 @@ export default class LineGraph extends React.Component {
             x='date' y='emotion'
             scale='time'
             data={this.props.data}
-            animate={{duration: 3000}}
+            animate={{duration: 2000}}
           />
           <VictoryAxis style={{ axis: {strokeWidth: 1} }}
             tickFormat={() => ''}

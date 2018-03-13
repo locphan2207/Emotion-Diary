@@ -22,7 +22,8 @@ export default class PieGraph extends React.Component {
         {x: 'Delighted', y: 1, color: '#ED9B40'},
         {x: 'Blissful', y: 1, color: '#D34F73'},
         {x: 'Loved', y: 1, color: '#BA3B46'},
-      ]
+      ],
+      filteredData2: [] // for bar chart
     };
   }
 
@@ -62,7 +63,7 @@ export default class PieGraph extends React.Component {
       }
     });
     // }
-    this.setState({filteredColor, filteredData});
+    this.setState({filteredColor, filteredData, filteredData2: filteredData});
   }
 
   renderPie() {
@@ -84,12 +85,12 @@ export default class PieGraph extends React.Component {
         />
         <VictoryChart
           height={200} width={this.state.filteredData.length * 50}
-          animate={{duration: 1000}}
+          animate={{duration: 500}}
           padding={{left: 75, right: 75, top: 20, bottom: 0}}
         >
           <VictoryBar
             labels={(d) => `${d.y}`}
-            data={this.state.filteredData}
+            data={this.state.filteredData2}
             style={{
               data: {
                 fill: d => d.color,
