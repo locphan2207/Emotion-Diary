@@ -56,7 +56,7 @@ export default class PieGraph extends React.Component {
     const filteredColor = [];
     const filteredData = [];
     this.countData(props).forEach(data => {
-      if (data.y > 0) {
+      if (data.y > 0) { // if count > 0 then we take
         filteredColor.push(data.color);
         filteredData.push(data);
       }
@@ -67,7 +67,7 @@ export default class PieGraph extends React.Component {
 
   renderPie() {
     return (
-      <View>
+      <View style={{alignItems: 'center'}}>
         <VictoryPie
           style={{labels: {
             fontSize: 15,
@@ -83,9 +83,9 @@ export default class PieGraph extends React.Component {
           animate={{duration: 1500}}
         />
         <VictoryChart
-          height={200}
+          height={200} width={this.state.filteredData.length * 50}
           animate={{duration: 1000}}
-          padding={{left: 75, right: 50, top: 20, bottom: 0}}
+          padding={{left: 75, right: 75, top: 20, bottom: 0}}
         >
           <VictoryBar
             labels={(d) => `${d.y}`}

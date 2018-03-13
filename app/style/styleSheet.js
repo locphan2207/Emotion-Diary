@@ -7,18 +7,19 @@ const styles = StyleSheet.create({
 
   innerContainer: {
     width: '100%',
+    height: '90%',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    position: 'absolute',
-    top: 60,
     // backgroundColor: 'green'
   },
 
   menu: {
-    height: 50,
+    height: 90,
     width: '85%',
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+    // backgroundColor: 'red'
   },
 
   menuIcon: {
@@ -33,14 +34,13 @@ const styles = StyleSheet.create({
   },
 
   emoContainer: {
-    flex: 1/8,  // planing to divide container to 8 parts, then this one takes 1 part
+    // flex: 1/8,  // planing to divide container to 8 parts, then this one takes 1 part
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 50,
     width: '80%',
-    position: 'absolute',
-    top: 350,
+    marginTop: 50
   },
 
   emoji: {
@@ -49,16 +49,14 @@ const styles = StyleSheet.create({
   },
 
   prompt1: {
-    position: 'absolute',
-    top: 130,
-    left: 50,
+    width: '80%',
+    marginTop: 70,
+    // backgroundColor: 'yellow',
     fontFamily: 'AppleSDGothicNeo-Light',
     fontSize: 30
   },
   prompt2: {
-    position: 'absolute',
-    top: 280,
-    left: '18%',
+    marginTop: 50,
     fontFamily: 'AppleSDGothicNeo-Light',
     fontSize: 22
   },
@@ -66,13 +64,10 @@ const styles = StyleSheet.create({
   statusContainer: {
     width: '80%',
     height: 200,
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 10,
-    paddingBottom: 10,
-    position: 'absolute',
-    top: 450,
+    paddingTop: 30,
+    paddingBottom: 20
     // backgroundColor: 'green'
   },
 
@@ -83,19 +78,20 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     color: '#5D737E',
     borderColor: '#64B6AC',
-    borderWidth: 1,
+    borderWidth: 1.1,
     padding: 15
   },
 
   button: {
     alignItems: 'center',
-    padding: 10,
+    justifyContent: 'center',
     width: 120,
     backgroundColor: '#FCFFFD',
     borderRadius: 4,
     borderColor: '#5D737E',
-    marginTop: 15,
+    padding: 10,
     marginBottom: 20,
+    marginTop: 20,
     borderWidth: 1.1
   },
 
