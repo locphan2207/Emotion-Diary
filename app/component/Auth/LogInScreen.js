@@ -6,6 +6,7 @@ import {View, Text,
 import styles from '../../style/styleSheet';
 import LinearGradient from 'react-native-linear-gradient';
 import firebase from '../../../firebase/firebase';
+import demoCredential from '../../../secret/demoCredential';
 
 export default class LogInScreen extends React.Component {
   constructor() {
@@ -42,7 +43,8 @@ export default class LogInScreen extends React.Component {
 
   demoLogin() {
     const {email, password} = this.state;
-    firebase.auth().signInWithEmailAndPassword('demo@gmail.com', '123456')
+    firebase.auth().signInWithEmailAndPassword(demoCredential.email,
+      demoCredential.password)
       .then(() => {
         // const id = firebase.auth().currentUser.uid;
         this.props.navigation.navigate('Home');
