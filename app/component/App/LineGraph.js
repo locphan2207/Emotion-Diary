@@ -1,15 +1,11 @@
 import React from 'react';
 import {View, Text,
-  TouchableOpacity, ART
+  TouchableOpacity
 } from 'react-native';
 import {
-  VictoryChart, VictoryLine, VictoryVoronoiContainer, VictoryAxis
+  VictoryChart, VictoryLine, VictoryVoronoiContainer, VictoryAxis,
+  VictoryTheme, VictoryGroup, VictoryScatter
 } from 'victory-native';
-
-const {Surface, Shape} = ART;
-
-// import * as d3Scale from 'd3-scale';
-// import * as d3Shape from 'd3-shape';
 
 import moment from 'moment';
 import styles from '../../style/styleSheet';
@@ -42,51 +38,49 @@ export default class LineGraph extends React.Component {
     this.setState({filteredData});
   }
 
-  // getLinePath() {
-  //   const start = this.state.filteredData[0].date;
-  //   const end = this.state.filteredData[this.state.filteredData.length -1].date;
-  //   const scaleX = d3Scale.scaleTime()  // make scaleX a function to scale date data to range
-  //     .domain([start, end])
-  //     .range([0, 250]);
-  //   const scaleY = d3Scale.scaleLinear() // make scaleX a function to scale data to range
-  //     .domain([-2, 4]).nice()
-  //     .range([200, 0]); // invert y axis because react coord is different than svg html
-  //   const line = d3Shape.line()
-  //     .x(d => scaleX(d.date))
-  //     .y(d => scaleY(d.emotion));
-  //   const linePath = line(this.state.filteredData);
-  //   console.log(linePath);
-  //   return linePath;
-  // }
-
   getCategories() {
     const categories = this.state.filteredData.map(data => `${data.date.toLocaleTimeString()}`);
     console.log(categories);
     return categories;
   }
 
-  changeScroll(scrollEnabled) { // avoid scrolling screen when touching the graph
-    // this.setState({scrollEnabled});
-  }
-
   renderLine() {
     return (
       <VictoryChart
+        theme={VictoryTheme.material}
+        height={400} width={400}
+        padding={{left: 70, top: 60, right: 70, bottom: 60}}
+        domainPadding={5}
         containerComponent={
           <VictoryVoronoiContainer
-            onTouchStart={() => this.changeScroll(false)}
-            onTouchEnd={() => this.changeScroll(true)}
             labels={(d) => d.date.toLocaleTimeString()}
           />
         }
       >
         <VictoryLine
+          color={d => d.emotion < 0 ? '#899D78' : '#55B295'}
           x='date' y='emotion'
           scale='time'
           data={this.state.filteredData}
           animate={{duration: 3000}}
         />
-        <VictoryAxis style={{ axis: {strokeWidth: 1} }} />
+
+        <VictoryScatter
+          color={d => d.emotion < 0 ? '#899D78' : '#55B295'}
+          x='date' y='emotion'
+          scale='time'
+          data={this.state.filteredData}
+          animate={{duration: 3000}}
+        />
+
+        <VictoryAxis style={{ axis: {strokeWidth: 1} }}
+          tickFormat={() => ''}
+        />
+        <VictoryAxis
+          dependentAxis
+          tickValues={[-2, -1, 0, 1, 2, 3, 4]}
+          tickFormat={['Depressed', 'Sad', 'Meh', 'Happy', 'Delighted', 'Blissful', 'Loved']}
+        />
       </VictoryChart>
     );
   }
