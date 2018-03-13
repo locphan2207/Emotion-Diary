@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
   },
 
   graphContainer: {
+    // backgroundColor: 'green',
     alignItems: 'center',
     justifyContent: 'center'
   },

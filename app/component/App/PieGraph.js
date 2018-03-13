@@ -21,8 +21,8 @@ export default class PieGraph extends React.Component {
         {x: 'Sad', y: 1},
         {x: 'Meh', y: 1},
         {x: 'Happy', y: 1},
-        {x: 'Joyjul', y: 1},
         {x: 'Delighted', y: 1},
+        {x: 'Blissful', y: 1},
         {x: 'Loved', y: 1},
       ]
     };
@@ -32,7 +32,7 @@ export default class PieGraph extends React.Component {
   }
 
   countData(props) {
-    const emoText = ['Depressed', 'Sad', 'Meh', 'Happy', 'Joyful', 'Delighted', 'Loved'];
+    const emoText = ['Depressed', 'Sad', 'Meh', 'Happy', 'Delighted', 'Blissful', 'Loved'];
     const colorScale=['#899D78', '#A1B0AB', '#55B295', '#DB7F67', '#ED9B40',
       '#D34F73', '#BA3B46'];
     const emoCount = {};
@@ -61,27 +61,7 @@ export default class PieGraph extends React.Component {
     // }
     this.setState({filteredColor, filteredData});
   }
-
-  renderLine() {
-    const data = this.props.data;
-    let min = 0;
-    let max = 0;
-    if (data.length > 0) {
-      min = Math.floor(data[0].time/100000);
-      max = Math.ceil(data[data.length-1].time/100000);
-    }
-    console.log(min, max);
-    // Problem: x too big, have to make it like date
-    return (
-      <VictoryLine
-        range={{x: [min, max]}}
-        x={d => d.time%10} y='emotion'
-        labels={d => Math.floor(d.time/100000)}
-        data={this.props.data}
-      />
-    );
-  }
-
+  
   renderPie() {
     return (
       <VictoryPie
@@ -92,7 +72,7 @@ export default class PieGraph extends React.Component {
         labelRadius={90}
         padAngle={2}
         colorScale={this.state.filteredColor}
-        innerRadius={60}
+        innerRadius={55}
         labels={(data) => (data.x)}
         data={this.state.filteredData}
         animate={{duration: 1500}}
