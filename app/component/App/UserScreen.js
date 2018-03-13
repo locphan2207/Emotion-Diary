@@ -5,6 +5,8 @@ import {View, Text,
 } from 'react-native';
 // import graphUtil from '../../graphUtil/graphUtil';
 import LinearGradient from 'react-native-linear-gradient';
+import moment from 'moment';
+
 import styles from '../../style/styleSheet';
 import firebase from '../../../firebase/firebase';
 import PieGraph from './PieGraph';
@@ -15,7 +17,8 @@ export default class UserScreen extends React.Component {
     super();
     this.state = {
       emotions: [],
-      chartType: 'pie'
+      chartType: 'pie',
+      filterType: 'day'
     };
   }
 
@@ -32,17 +35,45 @@ export default class UserScreen extends React.Component {
     });
   }
 
+  filterData() {
+    const end = moment();
+    let start;
+    switch (this.state.filterType) {
+      case 'day':
+        start = moment().subtract(24, 'hours').unix();
+        break;
+      case 'week':
+        start = moment().subtract(7, 'days').unix();
+        break;
+      case 'month':
+        start = moment().subtract(1, 'months').unix();
+        break;
+    }
+    // Get current date, then calculate the range of data from 12AM to 11:59PM
+    const filteredData = [];
+    console.log(start, end);
+    this.state.emotions.forEach(data => {
+      if (data.time >= start && data.time <= end) {
+        data.date = new Date(data.time);
+        filteredData.push(data);
+      }
+    });
+    console.log(filteredData);
+    return filteredData;
+  }
+
   renderChart() {
+
     if (this.state.chartType === 'pie') {
       return (
         <PieGraph
-          data={this.state.emotions}
+          data={this.filterData()}
         />
     );
     } else {
       return (
         <LineGraph
-          data={this.state.emotions}
+          data={this.filterData()}
         />
       );
     }
@@ -55,6 +86,7 @@ export default class UserScreen extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <LinearGradient
         colors={['#C0FDFB', '#c5eaf9', '#FCFFFD']}
@@ -66,6 +98,16 @@ export default class UserScreen extends React.Component {
           </TouchableOpacity>
 
           {this.renderChart()}
+
+          <TouchableOpacity onPress={() => this.setState({filterType: 'day'})}>
+            <Text>Last 24h</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.setState({filterType: 'week'})}>
+            <Text>This week</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.setState({filterType: 'month'})}>
+            <Text>This month</Text>
+          </TouchableOpacity>
 
           <TouchableOpacity
             onPress={() => this.setState({chartType: 'pie'})}>

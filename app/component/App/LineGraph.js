@@ -20,16 +20,20 @@ export default class LineGraph extends React.Component {
   }
 
   componentDidMount() {
-    this.filterTodayData();
+    this.filterTodayData(this.props);
   }
 
-  filterTodayData() {
+  componentWillReceiveProps(nextProps) {
+    this.filterTodayData(nextProps);
+  }
+
+  filterTodayData(props) {
     // Get current date, then calculate the range of data from 12AM to 11:59PM
     const today = moment();
     const start = moment([today.year(), today.month(), today.date()]).unix();  // 12AM
     const end = moment([today.year(), today.month(), today.date(), 23, 59]).unix(); // 11:59PM
     const filteredData = [];
-    this.props.data.forEach(data => {
+    props.data.forEach(data => {
       if (data.time >= start && data.time <= end) {
         data.date = new Date(data.time);
         filteredData.push(data);
@@ -38,13 +42,8 @@ export default class LineGraph extends React.Component {
     this.setState({filteredData});
   }
 
-  getCategories() {
-    const categories = this.state.filteredData.map(data => `${data.date.toLocaleTimeString()}`);
-    console.log(categories);
-    return categories;
-  }
-
   renderLine() {
+    console.log(this.state.filteredData);
     return (
       <VictoryChart
         theme={VictoryTheme.material}
@@ -53,7 +52,7 @@ export default class LineGraph extends React.Component {
         domainPadding={5}
         containerComponent={
           <VictoryVoronoiContainer
-            labels={(d) => d.date.toLocaleTimeString()}
+          labels={(d) => `${d.date.toLocaleTimeString()} ${d.text}`}
           />
         }
       >
@@ -64,29 +63,29 @@ export default class LineGraph extends React.Component {
           data={this.state.filteredData}
           animate={{duration: 3000}}
         />
-
-        <VictoryScatter
-          style={{data: {stroke: '#55B295'}}}
-          x='date' y='emotion'
-          scale='time'
-          data={this.state.filteredData}
-          animate={{duration: 3000}}
-        />
-
-        <VictoryAxis style={{ axis: {strokeWidth: 1} }}
+        <VictoryChart
+        >
+          <VictoryScatter
+            style={{data: {stroke: '#55B295'}}}
+            x='date' y='emotion'
+            scale='time'
+            data={this.state.filteredData}
+            animate={{duration: 3000}}
+          />
+          <VictoryAxis style={{ axis: {strokeWidth: 1} }}
           tickFormat={() => ''}
-        />
-        <VictoryAxis
+          />
+          <VictoryAxis
           dependentAxis
           tickValues={[-2, -1, 0, 1, 2, 3, 4]}
           tickFormat={['Depressed', 'Sad', 'Meh', 'Happy', 'Delighted', 'Blissful', 'Loved']}
-        />
+          />
+        </VictoryChart>
       </VictoryChart>
     );
   }
 
   render() {
-    console.log(this.state);
     if (this.state.filteredData.length < 1) return null;
     return (
       <View style={styles.graphContainer}>

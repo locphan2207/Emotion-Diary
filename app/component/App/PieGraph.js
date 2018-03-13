@@ -54,17 +54,15 @@ export default class PieGraph extends React.Component {
     return Object.values(emoCount);
   }
 
-  filterData(nextProps) {  // filter color for only available emotions
+  filterData(props) {  // filter color for only available emotions
     const filteredColor = [];
     const filteredData = [];
-    console.log(this.props);
-    // if (this.props.countData) {
-      this.countData(nextProps).forEach(data => {
-        if (data.y > 0) {
-          filteredColor.push(data.color);
-          filteredData.push(data);
-        }
-      });
+    this.countData(props).forEach(data => {
+      if (data.y > 0) {
+        filteredColor.push(data.color);
+        filteredData.push(data);
+      }
+    });
     // }
     this.setState({filteredColor, filteredData});
   }
