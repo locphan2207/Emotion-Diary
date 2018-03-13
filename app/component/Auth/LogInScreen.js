@@ -56,7 +56,7 @@ export default class LogInScreen extends React.Component {
       const err = this.state.err;
       return (
         <View style={styles.errorView}>
-          {this.state.err.map(error => (<Text style={styles.error}>{error}</Text>))}
+          {this.state.err.map((error, idx) => (<Text key={idx} style={styles.error}>{error}</Text>))}
         </View>
       );
     }
