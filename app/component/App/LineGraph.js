@@ -30,8 +30,8 @@ export default class LineGraph extends React.Component {
         containerComponent={
           <VictoryVoronoiContainer
           labels={(d) => {
-            if (d.text === '') return `${d.date.toString()}`;
-            else return `${d.date.toString()}\n"${d.text}"`;
+            if (d.text === '') return `${moment(d.time).format('ddd, MMM D, h:mm:ss a')}`;
+            else return `${moment(d.time).format('ddd, MMM D, h:mm:ss a')}\n"${d.text}"`;
           }}
           />
         }
