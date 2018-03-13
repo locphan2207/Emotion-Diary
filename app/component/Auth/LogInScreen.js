@@ -40,6 +40,15 @@ export default class LogInScreen extends React.Component {
       });
   }
 
+  demoLogin() {
+    const {email, password} = this.state;
+    firebase.auth().signInWithEmailAndPassword('demo@gmail.com', '123456')
+      .then(() => {
+        // const id = firebase.auth().currentUser.uid;
+        this.props.navigation.navigate('Home');
+      });
+  }
+
   renderErrors() {
     if (this.state.err.length > 0) {
       const err = this.state.err;
@@ -56,7 +65,7 @@ export default class LogInScreen extends React.Component {
       <LinearGradient
         colors={['#C0FDFB', '#c5eaf9', '#FCFFFD']}
         style={styles.container}>
-        
+
         <View style={styles.authContainer}>
           {this.renderErrors()}
           <TextInput
@@ -80,13 +89,23 @@ export default class LogInScreen extends React.Component {
             <Text>Log In</Text>
           </TouchableOpacity>
           <Text
-            style={{marginTop: 20, fontStyle: 'italic'}}>
+            style={{marginTop: 25, fontStyle: 'italic'}}>
             Do not have an account?
           </Text>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("SignUp")}>
             <Text style={styles.switchButton}>Sign up!</Text>
           </TouchableOpacity>
+
+          <Text
+            style={{marginTop: 20, fontStyle: 'italic'}}>
+            If you are a recruiter...
+          </Text>
+          <TouchableOpacity
+            onPress={() => this.demoLogin()}>
+            <Text style={styles.demo}>Demo LogIn</Text>
+          </TouchableOpacity>
+
         </View>
       </LinearGradient>
     );

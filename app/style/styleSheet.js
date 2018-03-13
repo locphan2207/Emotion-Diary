@@ -84,17 +84,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#FCFFFD',
     borderRadius: 4,
     borderColor: '#5D737E',
-    marginTop: 10,
+    marginTop: 15,
     borderWidth: 1
   },
 
   authInput: {
     width: '60%',
+    height: 40,
     fontSize: 15,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10,
     borderColor: '#5D737E',
     borderTopWidth: 0,
     borderLeftWidth: 0,
@@ -105,11 +106,22 @@ const styles = StyleSheet.create({
   switchButton: {
     fontWeight: '600',
     fontSize: 16,
-    color: '#b63c42'
+    color: '#b63c42',
+  },
+
+  demo: {
+    fontFamily: 'Avenir-Heavy',
+    textDecorationLine: 'underline',
+    fontWeight: '800',
+    fontSize: 16,
+    color: '#475841',
+
   },
 
   errorView :{
     marginBottom: 20,
+    width: '80%',
+    paddingLeft: 40
   },
 
   error: {
@@ -132,6 +144,8 @@ const styles = StyleSheet.create({
   chartContainer: {
     width: '100%',
     height: 500,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
   chartFilter: {

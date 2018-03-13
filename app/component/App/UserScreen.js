@@ -57,16 +57,24 @@ export default class UserScreen extends React.Component {
         filteredData.push(data);
       }
     });
+    console.log(filteredData);
     return filteredData;
   }
 
   renderChart() {
-
+    const data = this.filterData();
+    if (data.length < 1) return (
+    <View style={styles.chartContainer}>
+      <Text style={{color: '#283845', fontSize: 20}}>
+        You haven't saved any diary
+      </Text>
+    </View>
+    );
     if (this.state.chartType === 'pie') {
       return (
         <View style={styles.chartContainer}>
           <PieGraph
-            data={this.filterData()}
+            data={data}
           />
         </View>
     );
@@ -74,7 +82,7 @@ export default class UserScreen extends React.Component {
       return (
         <View style={styles.chartContainer}>
           <LineGraph
-            data={this.filterData()}
+            data={data}
           />
         </View>
       );

@@ -33,7 +33,7 @@ export default class PieGraph extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) { // incase no data loaded in did mount, we do here
-    this.filterData(nextProps);
+    this.filterAvailableData(nextProps);
   }
 
   countData(props) {
@@ -52,7 +52,7 @@ export default class PieGraph extends React.Component {
     return Object.values(emoCount);
   }
 
-  filterData(props) {  // filter color for only available emotions
+  filterAvailableData(props) {  // filter color for only available emotions
     const filteredColor = [];
     const filteredData = [];
     this.countData(props).forEach(data => {
