@@ -27,7 +27,14 @@ export default class PieGraph extends React.Component {
       ]
     };
   }
-  componentWillReceiveProps(nextProps) {
+
+  componentDidMount() {
+    if (this.props.data.length > 0) {
+      this.filterData(this.props);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) { // incase no data loaded in did mount, we do here
     this.filterData(nextProps);
   }
 
@@ -61,7 +68,7 @@ export default class PieGraph extends React.Component {
     // }
     this.setState({filteredColor, filteredData});
   }
-  
+
   renderPie() {
     return (
       <VictoryPie

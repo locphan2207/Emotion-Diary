@@ -49,7 +49,7 @@ export default class LineGraph extends React.Component {
       <VictoryChart
         theme={VictoryTheme.material}
         height={400} width={400}
-        padding={{left: 70, top: 60, right: 70, bottom: 60}}
+        padding={{left: 100, top: 60, right: 70, bottom: 60}}
         domainPadding={5}
         containerComponent={
           <VictoryVoronoiContainer
@@ -58,7 +58,7 @@ export default class LineGraph extends React.Component {
         }
       >
         <VictoryLine
-          color={d => d.emotion < 0 ? '#899D78' : '#55B295'}
+          style={{data: {stroke: '#B33F62'}}}
           x='date' y='emotion'
           scale='time'
           data={this.state.filteredData}
@@ -66,7 +66,7 @@ export default class LineGraph extends React.Component {
         />
 
         <VictoryScatter
-          color={d => d.emotion < 0 ? '#899D78' : '#55B295'}
+          style={{data: {stroke: '#55B295'}}}
           x='date' y='emotion'
           scale='time'
           data={this.state.filteredData}
