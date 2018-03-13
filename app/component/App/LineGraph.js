@@ -19,31 +19,8 @@ export default class LineGraph extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.filterTodayData(this.props);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.filterTodayData(nextProps);
-  }
-
-  filterTodayData(props) {
-    // Get current date, then calculate the range of data from 12AM to 11:59PM
-    const today = moment();
-    const start = moment([today.year(), today.month(), today.date()]).unix();  // 12AM
-    const end = moment([today.year(), today.month(), today.date(), 23, 59]).unix(); // 11:59PM
-    const filteredData = [];
-    props.data.forEach(data => {
-      if (data.time >= start && data.time <= end) {
-        data.date = new Date(data.time);
-        filteredData.push(data);
-      }
-    });
-    this.setState({filteredData});
-  }
-
   renderLine() {
-    console.log(this.state.filteredData);
+    console.log(this.props.data);
     return (
       <VictoryChart
         theme={VictoryTheme.material}
@@ -52,7 +29,7 @@ export default class LineGraph extends React.Component {
         domainPadding={5}
         containerComponent={
           <VictoryVoronoiContainer
-          labels={(d) => `${d.date.toLocaleTimeString()} ${d.text}`}
+          labels={(d) => `${d.date.toLocaleString()}\n"${d.text}"`}
           />
         }
       >
@@ -60,7 +37,7 @@ export default class LineGraph extends React.Component {
           style={{data: {stroke: '#B33F62'}}}
           x='date' y='emotion'
           scale='time'
-          data={this.state.filteredData}
+          data={this.props.data}
           animate={{duration: 3000}}
         />
         <VictoryChart
@@ -69,7 +46,7 @@ export default class LineGraph extends React.Component {
             style={{data: {stroke: '#55B295'}}}
             x='date' y='emotion'
             scale='time'
-            data={this.state.filteredData}
+            data={this.props.data}
             animate={{duration: 3000}}
           />
           <VictoryAxis style={{ axis: {strokeWidth: 1} }}
@@ -86,7 +63,7 @@ export default class LineGraph extends React.Component {
   }
 
   render() {
-    if (this.state.filteredData.length < 1) return null;
+    if (this.props.data.length < 1) return null;
     return (
       <View style={styles.graphContainer}>
         {this.renderLine()}
