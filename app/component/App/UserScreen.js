@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text,
   TouchableOpacity,
-  ScrollView, Image
+  ScrollView, Image, Button
 } from 'react-native';
 // import graphUtil from '../../graphUtil/graphUtil';
 import LinearGradient from 'react-native-linear-gradient';
@@ -9,6 +9,9 @@ import moment from 'moment';
 
 import styles from '../../style/styleSheet';
 import firebase from '../../../firebase/firebase';
+import * as admin from '../../../secret/adminCredential';
+import demoCredential from '../../../secret/demoCredential';
+
 import PieGraph from './PieGraph';
 import LineGraph from './LineGraph';
 
@@ -28,7 +31,7 @@ export default class UserScreen extends React.Component {
 
   collectData() {
     const uid = firebase.auth().currentUser.uid;
-    firebase.database().ref(`emotions/${uid}`).once('value').then(snapshot => {
+    firebase.database().ref(`emotions/${uid}`).on('value', snapshot => {
       this.setState({
         emotions: Object.values(snapshot.val())
       });
@@ -57,7 +60,6 @@ export default class UserScreen extends React.Component {
         filteredData.push(data);
       }
     });
-    console.log(filteredData);
     return filteredData;
   }
 

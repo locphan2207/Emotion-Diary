@@ -6,6 +6,7 @@ import {
 } from 'react-navigation';
 
 import firebase from '../../firebase/firebase';
+import {adminCredential} from '../../secret/adminCredential';
 
 import LogInScreen from './Auth/LogInScreen';
 import SignUpScreen from './Auth/SignUpScreen';
@@ -23,7 +24,6 @@ const AppNavigator = DrawerNavigator({
   User: UserScreen,
 });
 
-
 const RootNavigator = SwitchNavigator(
   {
     AuthLoader: AuthLoadingScreen,
@@ -37,7 +37,7 @@ const RootNavigator = SwitchNavigator(
 
 export default class App extends React.Component {
   render() {
-    console.log(firebase.auth().currentUser);
+    console.log(adminCredential.uid);
     return (
       <RootNavigator />
     );

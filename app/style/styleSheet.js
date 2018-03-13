@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   },
 
   logOut: {
-    height: 100,
+    height: 50,
     justifyContent: 'center'
   },
 

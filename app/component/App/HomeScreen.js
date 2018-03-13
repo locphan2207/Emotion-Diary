@@ -81,6 +81,7 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
+    console.log(firebase.auth().currentUser);
     const assetPath = '../../../images/assets';
     if (this.state.firstName === "") return null;
     return (
