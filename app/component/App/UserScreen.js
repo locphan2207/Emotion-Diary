@@ -51,14 +51,12 @@ export default class UserScreen extends React.Component {
     }
     // Get current date, then calculate the range of data from 12AM to 11:59PM
     const filteredData = [];
-    console.log(start, end);
     this.state.emotions.forEach(data => {
       if (data.time >= start && data.time <= end) {
         data.date = new Date(data.time);
         filteredData.push(data);
       }
     });
-    console.log(filteredData);
     return filteredData;
   }
 
@@ -86,7 +84,6 @@ export default class UserScreen extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <LinearGradient
         colors={['#C0FDFB', '#c5eaf9', '#FCFFFD']}

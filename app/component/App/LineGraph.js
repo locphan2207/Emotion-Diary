@@ -29,7 +29,10 @@ export default class LineGraph extends React.Component {
         domainPadding={5}
         containerComponent={
           <VictoryVoronoiContainer
-          labels={(d) => `${d.date.toLocaleString()}\n"${d.text}"`}
+          labels={(d) => {
+            if (d.text === '') return `${d.date.toLocaleString()}`;
+            else return `${d.date.toLocaleString()}\n"${d.text}"`;
+          }}
           />
         }
       >
@@ -50,12 +53,12 @@ export default class LineGraph extends React.Component {
             animate={{duration: 3000}}
           />
           <VictoryAxis style={{ axis: {strokeWidth: 1} }}
-          tickFormat={() => ''}
+            tickFormat={() => ''}
           />
           <VictoryAxis
-          dependentAxis
-          tickValues={[-2, -1, 0, 1, 2, 3, 4]}
-          tickFormat={['Depressed', 'Sad', 'Meh', 'Happy', 'Delighted', 'Blissful', 'Loved']}
+            dependentAxis
+            tickValues={[-2, -1, 0, 1, 2, 3, 4]}
+            tickFormat={['Depressed', 'Sad', 'Meh', 'Happy', 'Delighted', 'Blissful', 'Loved']}
           />
         </VictoryChart>
       </VictoryChart>

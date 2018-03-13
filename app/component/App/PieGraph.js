@@ -2,10 +2,8 @@ import React from 'react';
 import {View, Text,
   TouchableOpacity
 } from 'react-native';
-import {VictoryChart,
-  VictoryPie,
-  VictoryLine,
-  VictoryTooltip
+import {VictoryChart, VictoryPie, VictoryLine, VictoryTooltip,
+  VictoryBar, VictoryAxis
 } from 'victory-native';
 import moment from 'moment';
 import styles from '../../style/styleSheet';
@@ -17,13 +15,13 @@ export default class PieGraph extends React.Component {
       filteredColor: ['#899D78', '#A1B0AB', '#55B295', '#DB7F67', '#ED9B40',
         '#D34F73', '#BA3B46'],
       filteredData: [ //initial state of pie chart
-        {x: 'Depressed', y: 1},
-        {x: 'Sad', y: 1},
-        {x: 'Meh', y: 1},
-        {x: 'Happy', y: 1},
-        {x: 'Delighted', y: 1},
-        {x: 'Blissful', y: 1},
-        {x: 'Loved', y: 1},
+        {x: 'Depressed', y: 1, color: '#899D78'},
+        {x: 'Sad', y: 1, color: '#A1B0AB'},
+        {x: 'Meh', y: 1, color: '#55B295'},
+        {x: 'Happy', y: 1, color: '#DB7F67'},
+        {x: 'Delighted', y: 1, color: '#ED9B40'},
+        {x: 'Blissful', y: 1, color: '#D34F73'},
+        {x: 'Loved', y: 1, color: '#BA3B46'},
       ]
     };
   }
@@ -69,19 +67,43 @@ export default class PieGraph extends React.Component {
 
   renderPie() {
     return (
-      <VictoryPie
-        style={{labels: {
-          fontSize: 15,
-          fill: 'white'
-        }}}
-        labelRadius={90}
-        padAngle={2}
-        colorScale={this.state.filteredColor}
-        innerRadius={55}
-        labels={(data) => (data.x)}
-        data={this.state.filteredData}
-        animate={{duration: 1500}}
-      />
+      <View>
+        <VictoryPie
+          style={{labels: {
+            fontSize: 15,
+            fill: d => d.color
+          }}}
+          height={300}
+          labelRadius={120}
+          padAngle={2}
+          colorScale={this.state.filteredColor}
+          innerRadius={20}
+          labels={(data) => (data.x)}
+          data={this.state.filteredData}
+          animate={{duration: 1500}}
+        />
+        <VictoryChart
+          height={200}
+          animate={{duration: 500}}
+          padding={{left: 75, right: 50, top: 20, bottom: 0}}
+        >
+          <VictoryBar
+            labels={(d) => `${d.y}`}
+            data={this.state.filteredData}
+            style={{
+              data: {
+                fill: d => d.color,
+                width: 12
+              }
+            }}
+          />
+          <VictoryAxis
+            dependentAxis
+            tickFormat={() => ''}
+            style={{axis:{stroke: 'none'}}}
+          />
+        </VictoryChart>
+      </View>
     );
   }
 
